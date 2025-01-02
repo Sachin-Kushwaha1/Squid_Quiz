@@ -1,63 +1,181 @@
-# Getting Started with Create React App
+# Squid Quiz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+1. [Introduction](#introduction)
+2. [Project Structure](#project-structure)
+3. [Setup Instructions](#setup-instructions)
+4. [Running the Project](#running-the-project)
+5. [File Descriptions](#file-descriptions)
+   - [Root Files](#root-files)
+   - [Waste Folder](#waste-folder)
+   - [Config Folder](#config-folder)
+   - [Src Folder](#src-folder)
+6. [API Endpoints](#api-endpoints)
+7. [Technologies Used](#technologies-used)
 
-In the project directory, you can run:
+---
 
-### `npm start`
-Runs the app in the development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Introduction
 
-- The page will reload when you make changes.  
-- You may also see any lint errors in the console.
+Squid Quiz is a Node.js-based project with multiple features, including user authentication, email integration, and database interactions. This documentation provides a complete overview of the project structure and guidance for setup, execution, and development.
 
-### `npm test`
-Launches the test runner in the interactive watch mode.  
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
-Builds the app for production to the `build` folder.  
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Structure
 
-- The build is minified, and the filenames include the hashes.  
-- Your app is ready to be deployed!
+```
+Squid_Quiz-main
+├── .gitignore
+├── index.js
+├── package-lock.json
+├── package.json
+├── server.js
+├── Waste/
+├── config/
+├── src/
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Key Directories
 
-### `npm run eject`
-**Note: this is a one-way operation. Once you eject, you can't go back!**
+- **Waste**: Contains unused or experimental scripts.
+- **Config**: Configuration files for MongoDB, Nodemailer, and Passport.
+- **Src**: Core project files, including controllers, middleware, models, and routes.
 
-If you aren't satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
+---
 
-- It will copy all the configuration files and transitive dependencies (e.g., webpack, Babel, ESLint) into your project so you have full control over them.  
-- All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them.  
+## Setup Instructions
 
-At this point, you're on your own.
+1. **Clone the Repository:**
 
-You don’t have to use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```bash
+   git clone <repository-url>
+   cd Squid_Quiz-main
+   ```
 
-## Learn More
+2. **Install Dependencies:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root directory with the following variables:
 
-### Code Splitting
-This section has moved to the [documentation](https://facebook.github.io/create-react-app/docs/code-splitting).
+   ```env
+   MONGO_URI=<MongoDB connection string>
+   EMAIL_USER=<Email address>
+   EMAIL_PASS=<Email password>
+   JWT_SECRET=<JWT secret key>
+   ```
 
-### Analyzing the Bundle Size
-This section has moved to the [documentation](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size).
+4. **Setup Database:**
+   Ensure MongoDB is running and accessible with the connection string in `MONGO_URI`.
 
-### Making a Progressive Web App
-This section has moved to the [documentation](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app).
+---
 
-### Advanced Configuration
-This section has moved to the [documentation](https://facebook.github.io/create-react-app/docs/advanced-configuration).
+## Running the Project
 
-### Deployment
-This section has moved to the [documentation](https://facebook.github.io/create-react-app/docs/deployment).
+1. **Start the Development Server:**
 
-### `npm run build` fails to minify
-This section has moved to the [documentation](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify).
+   ```bash
+   npm start
+   ```
+
+   The app will run at [http://localhost:3000](http://localhost:3000).
+
+2. **Production Build:**
+
+   ```bash
+   npm run build
+   ```
+
+3. **Run Tests:**
+
+   ```bash
+   npm test
+   ```
+
+---
+
+## File Descriptions
+
+### Root Files
+
+- **`.gitignore`**: Specifies files and directories to ignore in version control.
+- **`index.js`**: Entry point of the application.
+- **`package.json`**: Contains project metadata and dependencies.
+- **`server.js`**: Main server file that initializes the application.
+
+### Waste Folder
+
+Contains experimental or deprecated scripts:
+
+- **`Final.js`**: Placeholder script.
+- **`checkToken.js`**: Token validation logic (deprecated).
+- **`firstlogin.js`**: Handles user first login scenarios (deprecated).
+- **`isSelected.js`**: Logic for selection tracking.
+- **`s1.js`**: Miscellaneous script.
+- **`saveToken.js`**: Saves tokens to storage (deprecated).
+- **`thank.js`**: Generates a thank-you message (deprecated).
+
+### Config Folder
+
+Configuration files:
+
+- **`mongo.config.js`**: MongoDB connection setup.
+- **`nodemailer.config.js`**: Email setup using Nodemailer.
+- **`passport.config.js`**: Authentication strategies using Passport.js.
+
+### Src Folder
+
+#### Controller
+
+- **`controller.js`**: Handles core application logic.
+- **`loginController.js`**: Manages user login and authentication.
+
+#### Middleware
+
+- **`checkaccess.js`**: Middleware to check user permissions.
+- **`confirm.js`**: Middleware for user confirmation flows.
+
+#### Model
+
+- **`LoginSchema.js`**: Mongoose schema for user login.
+- **`Squid.js`**: Core model for the application.
+- **`user.repo.js`**: Repository for user-related database operations.
+
+#### Routes
+
+- **`user_routes.js`**: Defines API endpoints for user-related operations.
+
+---
+
+## API Endpoints
+
+### User Routes
+
+- **`POST /login`**: User login.
+- **`POST /register`**: User registration.
+- **`GET /profile`**: Fetch user profile.
+- **`PUT /update`**: Update user details.
+
+### Admin Routes
+
+- **`GET /admin/users`**: Fetch all users (admin only).
+- **`DELETE /admin/user/:id`**: Delete a user by ID (admin only).
+
+---
+
+## Technologies Used
+
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Authentication**: Passport.js, JWT
+- **Email Service**: Nodemailer
+- **Other Tools**: Mongoose, Bcrypt.js
+
+---
+
+For further assistance or to contribute to the project, please refer to the contribution guidelines or contact the project maintainers.
+
